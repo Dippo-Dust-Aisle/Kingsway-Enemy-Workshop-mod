@@ -1,0 +1,12 @@
+global.v2_motion_frames+=1;
+if(global.v2_motion_frames<40)return 0;
+var actor=global.v2_motion_native;var win=actor.screen;var driver=global.v2_motion_driver;
+var rw=max(1,global.resolutionW/global.gameScale-win.width);var rh=max(1,global.resolutionH/global.gameScale-win.height-24);
+scr_v2_test_assert(driver.path_position!=global.v2_motion_phase && abs(driver.path_speed)>0,"Native path phase and speed continue during a movement transition");
+scr_v2_test_assert(abs(win.v2_motion_y-.15)<.01 && abs(win.y-(driver.y+.15*rh))<=1.1,"Native path keeps the action offset across forty real frames without snapping back");
+scr_v2_test_assert(abs(win.x-driver.x)<=1.1,"Relative native random-axis movement leaves the untouched path axis intact");
+var phase=driver.path_position;scr_v2_window(win,"clearMoveOffset",0,0,0);
+scr_v2_test_assert(driver.path_position==phase && abs(win.y-driver.y)<.01,"Clearing native offset returns to the current authored path position without restarting");
+var toggle=actor.v2_toggles;with(actor)instance_destroy();scr_v2_tick();
+scr_v2_test_assert(!instance_exists(driver) && !ds_exists(toggle,ds_type_map),"Destroying a native moving enemy releases its driver and toggle state");
+return 1;

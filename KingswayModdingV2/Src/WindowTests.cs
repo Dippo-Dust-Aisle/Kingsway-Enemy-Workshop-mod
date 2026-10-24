@@ -1,0 +1,14 @@
+using System;
+namespace KingswayWorkshop;
+public static class WindowTests {
+ public static void Add(Manifest m){
+  foreach(string mode in new[]{"physical","true","magic"})m.Enemies.Add(new(){Id="v3_"+mode,Name=mode+" damage probe",Stats=new(){MaxHealth=100,AttackSpeed=0},Actions=new(){new(){Kind=mode=="magic"?"magic":"damage",Mode=mode=="magic"?"damage":mode,Amount=20,Target="attacker",Blockable=false}}});
+  m.Enemies.Add(new(){Id="v3_transfer",Name="Transfer probe",Stats=new(){MaxHealth=100,AttackSpeed=0},Actions=new(){new(){Kind="damage",Mode="true",Amount=10,Lifesteal=50},new(){Kind="resource",Mode="transfer",Resource="mana",DestinationResource="health",Amount=3,Multiplier=2},new(){Kind="resource",Mode="fromDamage",Resource="mana",Target="attacker",Amount=50}}});
+  m.Enemies.Add(new(){Id="v3_visual",Name="Large Cosmetic",Mode="cosmetic",Image="portrait",Actions=new(),Appearance=new(){Size=272,Rotation=90,Draggable=false,Layer="behind",Opacity=7,Trails=true},Periodic=new(){new(){Kind="spawn",Mode="cosmetic",Enemy="v3_visual",Cooldown=.25}},Movement=new(){StartMode="firstPoint",Boundary="none",Points=new(){new(){X=.1,Y=.2,Duration=.2},new(){X=.8,Y=.2,Duration=.2}}}});
+  // Movement / Window "Delete" on a Cosmetic; compile coverage only (never spawned).
+  m.Enemies.Add(new(){Id="v3_delete",Name="Delete probe",Mode="cosmetic",Image="portrait",Actions=new(),Periodic=new(){new(){Kind="movement",Mode="delete",Cooldown=5}}});
+  // Variable Action 7 activates the Variable Branch 7 (project-wide); compile coverage.
+  m.Enemies.Add(new(){Id="v3_variables",Name="Variable probe",Stats=new(){MaxHealth=1000,AttackSpeed=0},Actions=new(){new(){Kind="attackSpeed",Mode="variable",Threshold=7}},Periodic=new(){new(){Kind="branch",Mode="variable",Threshold=7,Cooldown=1,Children=new(){new(){Kind="resource",Mode="restore",Resource="mana",Target="attacker",Amount=3}}}}});
+  m.Enemies.Add(new(){Id="v3_motion",Name="Action Move probe",Stats=new(){MaxHealth=1000,AttackSpeed=0},Actions=new(){new(){Kind="movement",Mode="actionMove",Move="variation",WaitForCompletion=true},new(){Kind="resource",Mode="restore",Resource="mana",Target="attacker",Amount=7}},Appearance=new(){Trails=true},Movement=new(){StartMode="firstPoint",PauseAttacking=false,PauseStunned=true,PauseMinimized=true,Boundary="none",Points=new(){new(){X=.2,Y=.2,Duration=2,Shape="arc",Bend=.3},new(){X=.8,Y=.6,Duration=2,Wait=.4}},ActionMoves=new(){new(){Id="variation",Name="Variation",TransitionSpeed=2,Points=new(){new(){X=.1,Y=0,Duration=.1,Wait=.1,Shape="arc"},new(){X=-.1,Y=0,Duration=.1}}},new(){Id="detour",Name="Detour",Mode="detour",TransitionSpeed=2,Points=new(){new(){X=.4,Y=.3,Duration=.1,Wait=.1,Behavior="radiusRandom",Radius=.05,RadiusSpeed=1,LeftSpread=0,RightSpread=0},new(){X=.6,Y=.2,Duration=.1}}}}}});
+ }
+}

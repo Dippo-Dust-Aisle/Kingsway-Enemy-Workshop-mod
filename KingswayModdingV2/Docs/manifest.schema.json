@@ -1,0 +1,1146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:kingsway-workshop:manifest:3",
+  "title": "Kingsway Enemy Workshop Schema 3",
+  "$ref": "#/$defs/Manifest",
+  "$defs": {
+    "Manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "menuTrails": {
+          "type": "boolean"
+        },
+        "audio": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/AudioAsset"
+          }
+        },
+        "schemaVersion": {
+          "type": "integer",
+          "const": 3
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "loadOrder": {
+          "type": "integer"
+        },
+        "assets": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "enemies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Enemy"
+          }
+        },
+        "statusVariants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/StatusVariant"
+          }
+        },
+        "overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SlotOverride"
+          }
+        },
+        "patches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CodePatch"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "id",
+        "enemies"
+      ]
+    },
+    "AudioAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "legacyIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "file": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "original": {
+          "type": "string"
+        },
+        "originalFilename": {
+          "type": "string"
+        }
+      },
+      "required": []
+    },
+    "Enemy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "appearance": {
+          "$ref": "#/$defs/WindowAppearance"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "enemy",
+            "hazard",
+            "cosmetic"
+          ]
+        },
+        "activationSeconds": {
+          "type": "number"
+        },
+        "spawnSound": {
+          "type": "string"
+        },
+        "spawnPitchVariance": {
+          "type": "boolean"
+        },
+        "music": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "stats": {
+          "$ref": "#/$defs/Stats"
+        },
+        "advanced": {
+          "$ref": "#/$defs/Resistance"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActionNode"
+          }
+        },
+        "whenAttacked": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActionNode"
+          },
+          "default": []
+        },
+        "whenGone": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/GoneTrigger"
+          }
+        },
+        "periodic": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActionNode"
+          }
+        },
+        "loot": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Loot"
+          }
+        },
+        "treasureRolls": {
+          "type": "integer"
+        },
+        "treasureChance": {
+          "type": "number"
+        },
+        "encounters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Encounter"
+          }
+        },
+        "movement": {
+          "$ref": "#/$defs/Movement"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Component"
+          }
+        },
+        "advancedGml": {
+          "type": "string"
+        }
+      },
+      "required": []
+    },
+    "WindowAppearance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "type": "integer",
+          "enum": [
+            68,
+            102,
+            136,
+            170,
+            204,
+            272
+          ]
+        },
+        "rotation": {
+          "type": "integer"
+        },
+        "draggable": {
+          "type": "boolean"
+        },
+        "layer": {
+          "type": "string"
+        },
+        "opacity": {
+          "type": "integer"
+        },
+        "trails": {
+          "type": "boolean"
+        },
+        "buttonText": {
+          "type": "string"
+        },
+        "skyPortrait": {
+          "type": "boolean"
+        },
+        "cosmeticStyle": {
+          "type": "string"
+        },
+        "autoClose": {
+          "type": "number"
+        },
+        "showCloseIndicator": {
+          "type": "boolean"
+        }
+      },
+      "required": []
+    },
+    "Stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxHealth": {
+          "type": "number"
+        },
+        "defence": {
+          "type": "number"
+        },
+        "minDamage": {
+          "type": "number"
+        },
+        "maxDamage": {
+          "type": "number"
+        },
+        "attackSpeed": {
+          "type": "number"
+        },
+        "experience": {
+          "type": "number"
+        },
+        "goldMin": {
+          "type": "number"
+        },
+        "goldMax": {
+          "type": "number"
+        }
+      },
+      "required": []
+    },
+    "Resistance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "poisonResistance": {
+          "type": "number"
+        },
+        "coldResistance": {
+          "type": "number"
+        },
+        "burnResistance": {
+          "type": "number"
+        }
+      },
+      "required": []
+    },
+    "ActionNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "weapon",
+            "physical",
+            "true",
+            "lifesteal",
+            "damage",
+            "apply",
+            "reduce",
+            "clear",
+            "effect",
+            "restore",
+            "drain",
+            "transfer",
+            "fromDamage",
+            "message",
+            "log",
+            "sound",
+            "rename",
+            "portrait",
+            "restorePortrait",
+            "rotation",
+            "rotate",
+            "opacity",
+            "layer",
+            "actionMove",
+            "returnToBase",
+            "returnToPoint",
+            "shake",
+            "minimize",
+            "maximize",
+            "delete",
+            "enemy",
+            "cosmetic",
+            "projectile",
+            "conditional",
+            "chance",
+            "alternate",
+            "cooldown",
+            "wait",
+            "variable",
+            "set",
+            "add",
+            "multiply",
+            "restoreBase"
+          ],
+          "default": ""
+        },
+        "basis": {
+          "type": "string",
+          "enum": [
+            "fixed",
+            "maxPercent",
+            "currentPercent"
+          ],
+          "default": "fixed"
+        },
+        "resource": {
+          "type": "string",
+          "enum": [
+            "health",
+            "mana"
+          ],
+          "default": "health"
+        },
+        "destinationResource": {
+          "type": "string",
+          "enum": [
+            "health",
+            "mana"
+          ],
+          "default": "health"
+        },
+        "lifesteal": {
+          "type": "number"
+        },
+        "move": {
+          "type": "string"
+        },
+        "waitForCompletion": {
+          "type": "boolean"
+        },
+        "pauseBefore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3600,
+          "default": 0
+        },
+        "buttonText": {
+          "type": "string"
+        },
+        "restoreAfter": {
+          "type": "number"
+        },
+        "layer": {
+          "type": "string"
+        },
+        "windowBasis": {
+          "type": "string",
+          "enum": [
+            "absolute",
+            "relative"
+          ],
+          "default": "absolute"
+        },
+        "windowOffsetX": {
+          "type": "number",
+          "minimum": -2,
+          "maximum": 2,
+          "default": 0
+        },
+        "windowOffsetY": {
+          "type": "number",
+          "minimum": -2,
+          "maximum": 2,
+          "default": 0
+        },
+        "windowMinX": {
+          "type": "number",
+          "minimum": -2,
+          "maximum": 2,
+          "default": -0.25
+        },
+        "windowMaxX": {
+          "type": "number",
+          "minimum": -2,
+          "maximum": 2,
+          "default": 0.25
+        },
+        "windowMinY": {
+          "type": "number",
+          "minimum": -2,
+          "maximum": 2,
+          "default": -0.25
+        },
+        "windowMaxY": {
+          "type": "number",
+          "minimum": -2,
+          "maximum": 2,
+          "default": 0.25
+        },
+        "windowDuration": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3600,
+          "default": 0
+        },
+        "windowEasing": {
+          "type": "string",
+          "enum": [
+            "linear",
+            "ease"
+          ],
+          "default": "linear"
+        },
+        "windowBoundary": {
+          "type": "string",
+          "enum": [
+            "inherit",
+            "clamp",
+            "wrap",
+            "reverse",
+            "none"
+          ],
+          "default": "inherit"
+        },
+        "attackSpeedOperation": {
+          "type": "string",
+          "enum": [
+            "set",
+            "add",
+            "multiply",
+            "restoreBase"
+          ],
+          "default": "set"
+        },
+        "attackSpeedValue": {
+          "type": "number",
+          "minimum": -100000,
+          "maximum": 100000,
+          "default": 0.4
+        },
+        "resetAttackProgress": {
+          "type": "boolean",
+          "default": false
+        },
+        "waitMin": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3600,
+          "default": 0
+        },
+        "waitMax": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3600,
+          "default": 0
+        },
+        "repeat": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64,
+          "default": 1
+        },
+        "interval": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3600,
+          "default": 0
+        },
+        "outsideEntry": {
+          "type": "boolean"
+        },
+        "placement": {
+          "type": "string"
+        },
+        "windowPlacement": {
+          "type": "string",
+          "enum": [
+            "fixed",
+            "randomX",
+            "randomY",
+            "randomXY"
+          ],
+          "default": "fixed"
+        },
+        "statusOperation": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "damage",
+            "magic",
+            "resource",
+            "text",
+            "movement",
+            "spawn",
+            "branch",
+            "attackSpeed"
+          ],
+          "default": "strike"
+        },
+        "chance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 100
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100000,
+          "default": 1
+        },
+        "multiplier": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 1
+        },
+        "minDamage": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "maxDamage": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "target": {
+          "type": "string"
+        },
+        "positiveDamageOnly": {
+          "type": "boolean"
+        },
+        "magicHits": {
+          "type": "boolean"
+        },
+        "despiteBlocking": {
+          "type": "boolean"
+        },
+        "blockable": {
+          "type": "boolean"
+        },
+        "family": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "enemy": {
+          "type": "string"
+        },
+        "asset": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "effect": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "x": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 2,
+          "default": 0.5
+        },
+        "y": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 2,
+          "default": 0.5
+        },
+        "condition": {
+          "type": "string"
+        },
+        "threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100000,
+          "default": 50
+        },
+        "cooldown": {
+          "type": "number",
+          "minimum": 0.25,
+          "maximum": 3600,
+          "default": 1
+        },
+        "healPerMana": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 0
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActionNode"
+          }
+        },
+        "else": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActionNode"
+          }
+        },
+        "pathCount": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 16,
+          "default": 2
+        },
+        "pathPoint": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64,
+          "default": 1
+        },
+        "pathShape": {
+          "type": "string"
+        },
+        "bend": {
+          "type": "number",
+          "minimum": -2,
+          "maximum": 2,
+          "default": 0.25
+        },
+        "morePaths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActionPath"
+          }
+        }
+      },
+      "required": []
+    },
+    "ActionPath": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActionNode"
+          }
+        }
+      },
+      "required": []
+    },
+    "GoneTrigger": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActionNode"
+          }
+        }
+      },
+      "required": []
+    },
+    "Loot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "item": {
+          "type": "string"
+        },
+        "chance": {
+          "type": "number"
+        },
+        "min": {
+          "type": "integer"
+        },
+        "max": {
+          "type": "integer"
+        },
+        "minLevel": {
+          "type": "integer"
+        },
+        "maxLevel": {
+          "type": "integer"
+        },
+        "group": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number"
+        },
+        "mandatory": {
+          "type": "boolean"
+        },
+        "cursed": {
+          "type": "boolean"
+        },
+        "enchantment": {
+          "type": "string"
+        },
+        "enchantments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LootBonus"
+          }
+        },
+        "damageOverride": {
+          "type": "boolean"
+        },
+        "damageMin": {
+          "type": "integer"
+        },
+        "damageMax": {
+          "type": "integer"
+        },
+        "levelOverride": {
+          "type": "boolean"
+        },
+        "requiredLevelMin": {
+          "type": "integer"
+        },
+        "requiredLevelMax": {
+          "type": "integer"
+        },
+        "requiredStrength": {
+          "type": "integer"
+        },
+        "requiredAgility": {
+          "type": "integer"
+        },
+        "requiredIntelligence": {
+          "type": "integer"
+        }
+      },
+      "required": []
+    },
+    "LootBonus": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "stat": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer"
+        }
+      },
+      "required": []
+    },
+    "Encounter": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pool": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number"
+        }
+      },
+      "required": []
+    },
+    "Movement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "startX": {
+          "type": "number"
+        },
+        "startY": {
+          "type": "number"
+        },
+        "randomMirror": {
+          "type": "boolean"
+        },
+        "legacySpawnOffset": {
+          "type": "boolean"
+        },
+        "actionMoves": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActionMove"
+          }
+        },
+        "dragReturn": {
+          "$ref": "#/$defs/DragReturn"
+        },
+        "shape": {
+          "type": "string"
+        },
+        "startMode": {
+          "type": "string",
+          "enum": [
+            "center",
+            "fixed",
+            "firstPoint",
+            "randomX",
+            "randomY",
+            "randomXY"
+          ]
+        },
+        "bend": {
+          "type": "number"
+        },
+        "useGameSpeed": {
+          "type": "boolean"
+        },
+        "gameSpeed": {
+          "type": "number"
+        },
+        "profile": {
+          "type": "string"
+        },
+        "intensity": {
+          "type": "number"
+        },
+        "interpolation": {
+          "type": "string"
+        },
+        "loopStart": {
+          "type": "integer"
+        },
+        "boundary": {
+          "type": "string",
+          "enum": [
+            "none",
+            "clamp",
+            "wrap",
+            "reverse",
+            "restart"
+          ]
+        },
+        "pauseAttacking": {
+          "type": "boolean"
+        },
+        "pauseStunned": {
+          "type": "boolean"
+        },
+        "pauseMinimized": {
+          "type": "boolean"
+        },
+        "pauseDead": {
+          "type": "boolean"
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Waypoint"
+          }
+        }
+      },
+      "required": []
+    },
+    "ActionMove": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "entry": {
+          "type": "string"
+        },
+        "transitionSpeed": {
+          "type": "number"
+        },
+        "overlap": {
+          "type": "string"
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Waypoint"
+          }
+        },
+        "legacyPlacement": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ActionNode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": []
+    },
+    "Waypoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shape": {
+          "type": "string"
+        },
+        "bend": {
+          "type": "number"
+        },
+        "behavior": {
+          "type": "string"
+        },
+        "radius": {
+          "type": "number"
+        },
+        "radiusSpeed": {
+          "type": "number"
+        },
+        "leftSpread": {
+          "type": "number"
+        },
+        "rightSpread": {
+          "type": "number"
+        },
+        "rotation": {
+          "type": "number"
+        },
+        "direction": {
+          "type": "string"
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "speed": {
+          "type": "number"
+        },
+        "wait": {
+          "type": "number"
+        },
+        "variance": {
+          "type": "number"
+        },
+        "controlX": {
+          "type": "number"
+        },
+        "controlY": {
+          "type": "number"
+        }
+      },
+      "required": []
+    },
+    "DragReturn": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entry": {
+          "type": "string"
+        },
+        "transitionSpeed": {
+          "type": "number"
+        }
+      },
+      "required": []
+    },
+    "Component": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "slot": {
+          "type": "string"
+        },
+        "enemy": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "limb",
+            "separate"
+          ]
+        },
+        "deathAction": {
+          "$ref": "#/$defs/DeathAction"
+        }
+      },
+      "required": []
+    },
+    "DeathAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "percent": {
+          "type": "boolean"
+        }
+      },
+      "required": []
+    },
+    "StatusVariant": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "family": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "popup": {
+          "type": "string"
+        }
+      },
+      "required": []
+    },
+    "SlotOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "slot": {
+          "type": "string"
+        },
+        "enemy": {
+          "type": "string"
+        },
+        "components": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": []
+    },
+    "CodePatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "required": []
+    }
+  },
+  "description": "Structural schema. Backend validation additionally checks ranges, symbolic assets, slots, graph cycles and cross-mod conflicts."
+}
