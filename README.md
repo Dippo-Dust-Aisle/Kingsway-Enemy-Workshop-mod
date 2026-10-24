@@ -130,12 +130,14 @@ The source is in `Src` (C#), `Web` (editor) and `Runtime` (GameMaker scripts). `
 
 ## Credits and license
 
-Made by Dippo Dust Aisle. Uses [UndertaleModTool](https://github.com/UnderminersTeam/UndertaleModTool) (GPL-3.0), which isn't included. This is a fan project and is not affiliated with the developers of Kingsway. No game files are included.
+Made by Dippo Dust Aisle. Uses [UndertaleModTool](https://github.com/UnderminersTeam/UndertaleModTool) (GPL-3.0), which isn't included. This is a fan project and is not affiliated with the developers of Kingsway.
+
+The download doesn't include any Kingsway game files (such as `data.win`, the game's program or its music). The Workshop reads the game's art from your own installed copy. The sample enemies' assets present are portraits that are in large abundance recolors of Kingsway's own enemy sprites, and one or more rotated in-game sprite(s). That art belongs to Kingsway's developers.
 
 Licensed under the [PolyForm Noncommercial License 1.0.0](KingswayModdingV2/LICENSE), with extra permissions:
 
 - **Allowed:** using it, making videos and streams of it (monetized is fine), adding features and sharing your changed version for free.
-- **Your enemies are yours:** you can share or sell the enemies and mods you make with it, including on Patreon or Ko-fi.
+- **Your enemies are yours:** you can share or sell the enemies and mods you make with it, including on Patreon or Ko-fi. This license can't give you rights to Kingsway's own art: if your enemy uses or recolors the game's sprites, that part is up to Kingsway's developers.
 - **Not allowed:** selling, reselling or paywalling the Workshop itself, or a changed version of it.
 
 See [LICENSE](KingswayModdingV2/LICENSE) for the exact terms.
