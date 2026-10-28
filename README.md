@@ -103,8 +103,9 @@ Scroll down to "Start marker & movement settings", native game speed is there - 
 - Ease = Acceleration/deceleration 
 - Bezier = smooth/curve
 - Catmull-Rom = a kind of drifting and overshooting of points.
-Under "Point behavior" > Radius Random: Randomly goes to a point in the circle based on the degrees in the hemispheres.
-- Under "Boundary" > 
+Under "Point behavior" > 
+- Radius Random: Randomly goes to a point in the circle based on the degrees in the hemispheres.
+Under "Boundary" > 
 - Clamp: Stick to wall
 - Wrap - Screen wrap
 - Reverse - Bounce
@@ -117,7 +118,7 @@ Add parts when you want them to die/spawn alongside the dead. Can do double spaw
 Can swap quest boss and drop their loot. Make your own "official" bosses this way and replace them. 
 
 ##  Advanced
-Advanced GML: Basically for future modding - not really important. 
+Advanced GML: Basically for possible future modding - not really important. 
 Complete project JSON: Copy and paste the text here into a word counter, it basically shows that your complex enemies would be 1000+ lines of code if you had to write them as .json. "Mother Mage Doctrinaire" is 2717 lines of code in a .json file, and that is just in its file, doesn't include other summons, hazards, or cosmetics. Maybe future versus cuts down on this - already mad converter in past that cut down on it.
 
 ------------------------------------
@@ -161,6 +162,7 @@ See [LICENSE](KingswayModdingV2/LICENSE) for the exact terms.
 - Text across the app could use a once over, but will wait till all features are added.
 - Number of "Random Fight" classes existing adds more start up time to fights then simply having "Test Fight" to fights, may change in future. Random Fights typically load faster than Test Fights because the system was built to accommodate them 
 - "Test Fight" always equips you with starting gear.
+- Enemy movement patterns scale with screen ratio to increase/decrease distance traveled - will likely need a feature to exempt some enemies so it doesn't break some enemies movement quirks, like the "Mother Mage Doctrinaire".
 - "Guard Stance" ability now (allegedly) works; didn't have time to test it in all cases.
 
 ## Support
