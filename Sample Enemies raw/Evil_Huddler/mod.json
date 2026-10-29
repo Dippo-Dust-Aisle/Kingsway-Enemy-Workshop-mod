@@ -1,26 +1,13 @@
 {
   "menuTrails": false,
-  "audio": {
-    "nuke_sound": {
-      "legacyIds": [],
-      "file": "audio/nuke_sound_toOgg.ogg",
-      "kind": "music",
-      "original": "audio/nuke_sound.wav",
-      "originalFilename": "nuke sound.wav"
-    }
-  },
+  "audio": {},
   "schemaVersion": 3,
   "id": "enemy_mod_mv6gywfu_copy",
-  "name": "Evil Ass Huddler",
+  "name": "Evil Huddler",
   "version": "1.0.0",
   "loadOrder": 1,
   "assets": {
-    "portrait_fd415b562d354147b51bc3b2b0dd4069": "portrait_fd415b562d354147b51bc3b2b0dd4069.png",
     "portrait_d386f793c2014672a2d434943d2af27f": "portrait_d386f793c2014672a2d434943d2af27f.png",
-    "portrait_c1bc57dc87ba453bae0bd60c0d0aedef": "portrait_c1bc57dc87ba453bae0bd60c0d0aedef.png",
-    "portrait_b08c583f6cbd481ca81aa2a67c3a58a7": "portrait_b08c583f6cbd481ca81aa2a67c3a58a7.png",
-    "portrait_5bf4f64e6b304f05bcc49683c5271aee": "portrait_5bf4f64e6b304f05bcc49683c5271aee.png",
-    "portrait_5c46263235774f25a38e4a70cd552330": "portrait_5c46263235774f25a38e4a70cd552330.png",
     "portrait_4e3c597eab7c4a1d8de495f01881090e": "portrait_4e3c597eab7c4a1d8de495f01881090e.png",
     "portrait_9b8549cde0d344eca0d366b6cbf37b46": "portrait_9b8549cde0d344eca0d366b6cbf37b46.png"
   },
